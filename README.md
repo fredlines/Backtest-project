@@ -4,7 +4,7 @@ An event-driven backtesting engine in Python, built to test an ICT-style fair va
 
 ## Why this exists
 
-This was a learning project. I wanted to build a backtester properly and test a real strategy through it, and I did not expect the strategy to be profitable. The strategy was the test case, not the point. What I wanted out of it was the engineering and the discipline: event-driven fills, honest costs, no lookahead, statistics that say how much a small sample can and cannot tell you, and catching my own mistakes along the way.
+This was a learning project. I wanted to build a backtester properly and test a real strategy through it, and I did not expect the strategy to be profitable. The strategy was the test case, not the point. What I wanted out of it was the engineering and the discipline: event-driven fills, honest costs, no lookahead, statistics that say how much a small sample can and cannot tell you, and checking the work for mistakes along the way.
 
 The headline result is a negative one: **the strategy shows no demonstrable edge.** 
 
@@ -15,7 +15,7 @@ Full write-up with every table: [docs/REPORT.md](docs/REPORT.md).
 - **No demonstrable edge.** Baseline (07:00-10:00 GMT, 1:2 RR): US30 -0.30R per trade over 34 trades, NAS100 +0.05R over 39. The instruments disagree in sign and both bootstrap 95% intervals include zero.
 - **The entry trigger is noise.** Across about 15,000 fifteen-minute gaps per instrument, forward 1h and 4h moves after bullish and bearish gaps do not differ from the market's unconditional drift (largest |t| = 1.32).
 - **One pattern runs against the thesis.** After price first revisits a bearish 4H gap, the next 24 hours rose 39 to 47 points more than drift on both instruments (t of 2.1 and 2.4). Suggestive only: overlapping windows, several comparisons, and concentrated in 2025-2026 on US30.
-- **Small samples are fragile.** A one-minute candle misalignment that I found and fixed during review moved the 35-trade baselines by 0.14R to 0.22R per trade (enough to flip NAS100's sign) but moved the 160-trade samples by 0.05R or less. The before/after table is in section 8.2 of the report, and a regression test now guards it.
+- **Small samples are fragile.** A one-minute candle misalignment that was found and fixed during review moved the 35-trade baselines by 0.14R to 0.22R per trade (enough to flip NAS100's sign) but moved the 160-trade samples by 0.05R or less. The before/after table is in section 8.2 of the report, and a regression test now guards it.
 
 ## Layout
 
