@@ -1,0 +1,17 @@
+# market data and run outputs (large, and vendor terms may restrict redistribution)
+*.csv
+data/
+dukadata/
+output/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# editor / os
+.DS_Store
+.vscode/
+.idea/
