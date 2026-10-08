@@ -1,6 +1,6 @@
 # FVG Backtest Engine
 
-An event-driven backtesting engine in Python, built to test an ICT-style fair value gap (FVG) strategy on index CFDs. It has a pluggable strategy interface, a local browser UI, and a reproducible analysis of what the strategy actually does on three years of 1-minute US30 and NAS100 data.
+An event-driven backtesting engine in Python, built to test an ICT-style fair value gap (FVG) strategy on index CFDs. It has a pluggable strategy interface and a reproducible analysis of what the strategy actually does on three years of 1-minute US30 and NAS100 data.
 
 The headline result is a negative one: **the strategy shows no demonstrable edge**, and the way it fails is more interesting than a profit curve would be.
 
@@ -19,13 +19,11 @@ Full write-up with every table: [docs/REPORT.md](docs/REPORT.md).
 engine.py                generic engine: fills, sizing, costs, trade log, MAE/MFE
 strategies/
     fvg_cascade.py       the strategy (4H zone -> retrace -> 15m FVG -> limit entry)
-    sma_cross.py         minimal template for writing your own
 fvg_detector.py          3-candle fair value gap detection
 data_utils.py            CSV loading and candle construction
 convert_dukascopy.py     vendor CSV -> engine format, with a data health report
 report.py                statistics and charts
 run_backtest.py          command line entry point
-app.py                   local browser UI
 analysis/full_study.py   reproduces every number in the report
 tests/                   31 tests: candle alignment, FVG detection, fills, sizing, lookahead
 docs/                    REPORT.md and the raw results (JSON)
@@ -56,14 +54,6 @@ python run_backtest.py --strategy fvg_cascade --data data/dow_1m.csv \
 
 Any strategy parameter can be overridden with JSON, for example `--params '{"rr_target": 3.0, "directions": ["short"]}'`.
 
-## Browser UI
-
-```bash
-python app.py        # then open http://localhost:8765
-```
-
-Pick a data CSV, pick a strategy (auto-discovered from `strategies/`), edit its parameters, set costs, and run. You get the report, charts and a trade-log download. Uploading a strategy file runs that Python on your machine, so only load code you trust. The server binds to localhost only, and uploads never overwrite an existing strategy.
-
 ## Reproducing the report
 
 ```bash
@@ -74,7 +64,7 @@ Takes several minutes and regenerates `docs/results_*.json` and `docs/tables.md`
 
 ## Writing a strategy
 
-Copy `strategies/sma_cross.py`. A strategy is a class with three hooks:
+Use `strategies/fvg_cascade.py` as the worked example. A strategy is a class with three hooks:
 
 ```python
 from engine import Strategy, OrderRequest
@@ -96,7 +86,7 @@ class MyStrategy(Strategy):
         ...
 ```
 
-Order types are `market` (fills at the next candle's open), `limit` and `stop`. Call `ctx.count("label")` anywhere to add an event counter to the report. Drop the file in `strategies/` and the UI finds it.
+Order types are `market` (fills at the next candle's open), `limit` and `stop`. Call `ctx.count("label")` anywhere to add an event counter to the report. Put the file in `strategies/`, then register it in the `STRATEGIES` dict in `run_backtest.py` (the timeframes it needs and which one it steps through) and run it with `--strategy my_strategy`.
 
 ## How lookahead is avoided
 

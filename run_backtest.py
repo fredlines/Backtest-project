@@ -12,12 +12,9 @@ Usage:
     python3 run_backtest.py --strategy fvg_cascade --data path/to/1min.csv \\
         --params '{"rr_target": 3.0, "directions": ["short"]}'
 
-    python3 run_backtest.py --strategy sma_cross --data path/to/1min.csv \\
-        --params '{"fast": 10, "slow": 30, "stop_points": 40}'
-
 To add your own strategy:
     1. Write strategies/my_strategy.py, subclassing engine.Strategy
-       (see strategies/sma_cross.py for the minimal template).
+       (see strategies/fvg_cascade.py for a worked example).
     2. Register it in the STRATEGIES dict below: which timeframes it needs
        (resampled from the base 1-min data) and which one it executes on.
     3. Run with --strategy my_strategy.
@@ -34,7 +31,6 @@ from sample_data import generate_sample_1m
 from report import trades_to_df, compute_stats, print_report, save_charts
 
 from strategies.fvg_cascade import FVGCascadeStrategy
-from strategies.sma_cross import SmaCrossStrategy
 
 # ----------------------------------------------------------------------
 # Strategy registry. Add a new strategy here to make it available via
@@ -45,11 +41,6 @@ STRATEGIES = {
         'cls': FVGCascadeStrategy,
         'timeframes': {'htf': '4h', 'ltf': '15min'},
         'execution_tf': 'ltf',
-    },
-    'sma_cross': {
-        'cls': SmaCrossStrategy,
-        'timeframes': {'exec': '4h'},
-        'execution_tf': 'exec',
     },
 }
 # ----------------------------------------------------------------------
