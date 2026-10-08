@@ -1,5 +1,5 @@
 """
-HTF/LTF Fair Value Gap cascade strategy (your handwritten-notes strategy).
+HTF/LTF Fair Value Gap cascade strategy 
 
   1. A 4H FVG forms (bullish or bearish depending on trade direction).
   2. Wait for price to retrace back INTO that 4H FVG zone.
@@ -14,8 +14,8 @@ HTF/LTF Fair Value Gap cascade strategy (your handwritten-notes strategy).
      stays live until 10:00.
   6. Sizing/costs are handled generically by the engine's Config.
 
-Assumptions made where the handwritten notes didn't fully specify (see
-main README for the full list): the session window gates the 15m FVG
+Assumptions made (see main README for the full list):
+the session window gates the 15m FVG
 search and order placement, not 4H FVG formation; a 4H zone is discarded
 if price closes fully back through it, or after zone_max_age_hours; only
 the first qualifying 15m FVG per 4H zone is traded; unfilled orders expire
