@@ -6,7 +6,7 @@ An event-driven backtesting engine in Python, built to test an ICT-style fair va
 
 This was a learning project. I wanted to build a backtester properly and test a real strategy through it, and I did not expect the strategy to be profitable. The strategy was the test case, not the point. What I wanted out of it was the engineering and the discipline: event-driven fills, honest costs, no lookahead, statistics that say how much a small sample can and cannot tell you, and catching my own mistakes along the way.
 
-The headline result is a negative one: **the strategy shows no demonstrable edge.** That is the engine doing its job, not a failed project.
+The headline result is a negative one: **the strategy shows no demonstrable edge.** 
 
 ## What I found
 
