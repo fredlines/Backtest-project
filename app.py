@@ -1,21 +1,6 @@
 """
 Local web UI for the backtest engine.
 
-Run:
-    python3 app.py
-then open http://localhost:8765 in your browser.
-
-What it does:
-  - Auto-discovers every Strategy subclass in the strategies/ folder
-    (no registry editing needed: drop a .py in, it appears).
-  - Lets you pick a data CSV and a strategy, edit params as JSON,
-    set engine costs/risk, and run: all from the browser.
-  - Lets you upload a new strategy .py straight from the UI.
-  - Shows the full report, charts, and a trade log download.
-
-SECURITY NOTE: uploading a strategy file means executing that Python code
-on your machine. That's the entire point of the tool, but only load
-strategy files you wrote or trust. This server binds to localhost only.
 """
 
 import base64
