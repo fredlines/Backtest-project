@@ -2,7 +2,11 @@
 
 An event-driven backtesting engine in Python, built to test an ICT-style fair value gap (FVG) strategy on index CFDs. It has a pluggable strategy interface and a reproducible analysis of what the strategy actually does on three years of 1-minute US30 and NAS100 data.
 
-The headline result is a negative one: **the strategy shows no demonstrable edge**, and the way it fails is more interesting than a profit curve would be.
+## Why this exists
+
+This was a learning project. I wanted to build a backtester properly and test a real strategy through it, and I did not expect the strategy to be profitable. The strategy was the test case, not the point. What I wanted out of it was the engineering and the discipline: event-driven fills, honest costs, no lookahead, statistics that say how much a small sample can and cannot tell you, and catching my own mistakes along the way.
+
+The headline result is a negative one: **the strategy shows no demonstrable edge.** That is the engine doing its job, not a failed project.
 
 ## What I found
 
