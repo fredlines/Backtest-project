@@ -17,7 +17,7 @@
 
 An ICT-style multi-timeframe imbalance strategy: higher-timeframe context, lower-timeframe trigger.
 
-**Rules (from the original handwritten notes)**
+**Rules**
 1. A 4H Fair Value Gap forms (bearish for shorts, bullish for longs). An FVG is a 3-candle pattern where candle A's low sits above candle C's high (bearish), or A's high below C's low (bullish). Wick-based.
 2. Wait for price to retrace back into the 4H gap.
 3. After the retrace, wait for a fresh 15m FVG in the same direction at that zone.
@@ -27,7 +27,7 @@ An ICT-style multi-timeframe imbalance strategy: higher-timeframe context, lower
 7. Entries only 07:00 to 10:00 GMT.
 8. Position size set from the stop distance so every trade risks the same dollar amount.
 
-**Assumptions added where the notes were silent** (all configurable)
+**Assumptions** (all configurable)
 - The session window applies to the close time of the 15m candle that completes the gap (07:00 to 09:45); the resulting limit order stays live until 10:00. It does not gate 4H gap formation or the retrace.
 - A 4H zone is discarded if a 15m candle closes through it, or after 48 hours.
 - Only the first qualifying 15m gap per 4H zone is traded.
